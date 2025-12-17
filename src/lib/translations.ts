@@ -20,7 +20,7 @@ export const translations = {
     },
     howItWorks: {
       title: "How the journey works",
-      subtitle: "A simple, human-centered process from start to finish",
+      subtitle: "A simple, human-centered process from start to finish.",
       step1Title: "Choose your model",
       step1Text: "Pick one of my art-inspired website layouts — Van Gogh, Cézanne, Monet, Klimt, or Frida.",
       step2Title: "Send your story",

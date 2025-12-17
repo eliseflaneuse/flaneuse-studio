@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Sun, Moon } from "lucide-react";
-import { cn } from "../lib/utils";
-import { useTheme } from "../contexts/ThemeContext";
-import { useLanguage } from "../contexts/LanguageContext";
+import { Menu, X, Sun, Moon, ArrowRight } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { useTheme } from "@/contexts/ThemeContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -14,14 +14,13 @@ export const Navigation = () => {
     { label: t.nav.home, href: "#home" },
     { label: t.nav.services, href: "#services" },
     { label: t.nav.models, href: "#models" },
-    { label: t.nav.portfolio, href: "#portfolio" },
     { label: t.nav.about, href: "#about" },
     { label: t.nav.contact, href: "#contact" },
   ];
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 40);
+      setIsScrolled(window.scrollY > 50);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -39,97 +38,129 @@ export const Navigation = () => {
   return (
     <nav
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled
-          ? "bg-background/90 backdrop-blur-md shadow-soft-md"
-          : "bg-background/70 backdrop-blur-sm"
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
+        isScrolled 
+          ? "bg-background/95 backdrop-blur-sm border-b border-border" 
+          : "bg-transparent"
       )}
     >
-      <div className="max-w-7xl mx-auto px-4 md:px-6">
-        {/* Top row: centered logo + right-side controls */}
-        <div className="grid grid-cols-[1fr_auto_1fr] items-start py-4 md:py-5">
-          {/* left spacer */}
-          <div />
-
-          {/* center: logo + desktop nav */}
-          <div className="flex flex-col items-center gap-2">
-            <button
-              onClick={() => scrollToSection("#home")}
-              className="font-fredoka text-2xl md:text-3xl font-semibold text-primary hover:text-primary/80 transition-colors text-center"
-            >
+      <div className="max-w-5xl mx-auto px-6">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <button 
+            onClick={() => scrollToSection("#home")}
+            className="text-xl lg:text-2xl tracking-wide relative group"
+          >
+            <span className="relative">
               Flaneuse Studio
-            </button>
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full" />
+            </span>
+          </button>
 
-            {/* desktop nav under the logo */}
-            <div className="hidden md:flex items-center gap-6 mt-1">
-              {navItems.map((item) => (
-                <button
-                  key={item.href}
-                  onClick={() => scrollToSection(item.href)}
-                  className="text-sm text-foreground/80 hover:text-primary transition-colors font-medium"
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* right: theme + language + mobile menu */}
-          <div className="flex items-center justify-end gap-3">
-            {/* Theme toggle */}
-            <button
-              onClick={toggleTheme}
-              className="text-foreground hover:text-primary transition-colors p-1.5"
-              aria-label="Toggle theme"
-            >
-              {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
-            </button>
-
-            {/* Language toggle */}
-            <div className="flex gap-1 bg-muted rounded-full p-1">
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-8">
+            {navItems.map((item) => (
+              <button
+                key={item.href}
+                onClick={() => scrollToSection(item.href)}
+                className="font-mono text-xs lg:text-sm uppercase tracking-wider text-muted-foreground hover:text-accent transition-all duration-300 relative group flex items-center gap-1"
+              >
+                <ArrowRight className="w-0 h-3 opacity-0 transition-all duration-300 group-hover:w-3 group-hover:opacity-100" />
+                {item.label}
+              </button>
+            ))}
+            
+            {/* Language Toggle */}
+            <div className="flex items-center gap-1 font-mono text-xs">
               <button
                 onClick={() => setLanguage("en")}
                 className={cn(
-                  "px-3 py-1 rounded-full text-xs md:text-sm font-medium transition-colors",
+                  "px-2 py-1 transition-all duration-300 rounded-sm",
                   language === "en"
-                    ? "bg-primary text-primary-foreground"
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "text-accent-foreground bg-accent"
+                    : "text-muted-foreground hover:text-accent"
                 )}
               >
                 EN
               </button>
+              <span className="text-border">/</span>
               <button
                 onClick={() => setLanguage("pt")}
                 className={cn(
-                  "px-3 py-1 rounded-full text-xs md:text-sm font-medium transition-colors",
+                  "px-2 py-1 transition-all duration-300 rounded-sm",
                   language === "pt"
-                    ? "bg-primary text-primary-foreground"
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "text-accent-foreground bg-accent"
+                    : "text-muted-foreground hover:text-accent"
                 )}
               >
                 PT
               </button>
             </div>
 
-            {/* Mobile menu button */}
+            {/* Theme Toggle */}
             <button
-              onClick={() => setIsMobileMenuOpen((open) => !open)}
-              className="md:hidden text-foreground"
+              onClick={toggleTheme}
+              className="text-muted-foreground hover:text-accent transition-all duration-300 hover:rotate-180"
+              aria-label="Toggle theme"
             >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {theme === "light" ? <Moon size={16} /> : <Sun size={16} />}
+            </button>
+          </div>
+
+          {/* Mobile Controls */}
+          <div className="md:hidden flex items-center gap-4">
+            {/* Language Toggle */}
+            <div className="flex items-center gap-1 font-mono text-xs">
+              <button
+                onClick={() => setLanguage("en")}
+                className={cn(
+                  "px-1 transition-all duration-300",
+                  language === "en" ? "text-accent" : "text-muted-foreground"
+                )}
+              >
+                EN
+              </button>
+              <span className="text-border">/</span>
+              <button
+                onClick={() => setLanguage("pt")}
+                className={cn(
+                  "px-1 transition-all duration-300",
+                  language === "pt" ? "text-accent" : "text-muted-foreground"
+                )}
+              >
+                PT
+              </button>
+            </div>
+
+            {/* Theme Toggle */}
+            <button
+              onClick={toggleTheme}
+              className="text-muted-foreground hover:text-accent transition-all duration-300 hover:rotate-180"
+              aria-label="Toggle theme"
+            >
+              {theme === "light" ? <Moon size={16} /> : <Sun size={16} />}
+            </button>
+
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="text-foreground hover:text-accent transition-all duration-300"
+            >
+              {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
         </div>
 
-        {/* Mobile nav links (below header) */}
+        {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden pb-4 border-t border-border/40">
-            {navItems.map((item) => (
+          <div className="md:hidden py-6 border-t border-border animate-fade-in">
+            {navItems.map((item, index) => (
               <button
                 key={item.href}
                 onClick={() => scrollToSection(item.href)}
-                className="block w-full py-3 text-center text-sm font-medium text-foreground hover:text-primary transition-colors"
+                className="group flex items-center gap-2 w-full text-left py-3 font-mono text-xs uppercase tracking-wider text-muted-foreground hover:text-accent transition-all duration-300"
+                style={{ animationDelay: `${index * 50}ms` }}
               >
+                <ArrowRight className="w-3 h-3 transition-transform duration-300 group-hover:translate-x-1" />
                 {item.label}
               </button>
             ))}

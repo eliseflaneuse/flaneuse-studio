@@ -13,7 +13,7 @@ export const SectionTitle = ({ children, subtitle, className }: SectionTitleProp
         {children}
       </h2>
       {subtitle && (
-        <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
+        <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
           {subtitle}
         </p>
       )}

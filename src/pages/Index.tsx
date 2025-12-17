@@ -4,6 +4,8 @@ import { SectionTitle } from "../components/SectionTitle";
 import { FeatureCard } from "../components/FeatureCard";
 import { PackageCard } from "../components/PackageCard";
 import { ModelCard } from "../components/ModelCard";
+import { LegendAction } from "@/components/LegendAction";
+import { RisoHeroPlateTest } from "../components/RisoHeroPlateTest";
 import { ProjectCard } from "../components/ProjectCard";
 import { FAQAccordion } from "../components/FAQItem";
 import { Button } from "../components/ui/button";
@@ -16,8 +18,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../components/ui/select";
-import { Sparkles, Send, Rocket, Heart, Palette, Users } from "lucide-react";
-import heroIllustration from "@/assets/hero-illustration.jpg";
+import {
+  Sparkles,
+  Send,
+  Rocket,
+  Heart,
+  Palette,
+  Users,
+  ArrowUpRight,
+} from "lucide-react";
+
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const Index = () => {
@@ -31,64 +41,99 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
+      {/* Debug Grid Overlay - Remove the class below when done with design */}
+      {/*<div className="debug-grid" /> */}
+
       <Navigation />
 
       {/* Hero Section */}
-      <Section id="home" className="pt-32 md:pt-40 pb-20">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-8 animate-fade-in-up">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              {t.hero.title}
-            </h1>
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-              {t.hero.subtitle}
-              <br /><br />
-              <span className="text-foreground font-medium">{t.hero.tagline}</span>
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button 
-                size="lg" 
-                variant="hero"
-                onClick={() => scrollToSection("#models")}
+      <Section
+        id="home"
+        className="
+    relative overflow-hidden
+    min-h-[calc(100vh-96px)]
+    py-0
+    flex
+    items-center
+  "
+      >
+        <div className="w-full flex-1 flex items-center">
+          <div
+            className="
+        w-full
+        grid grid-cols-1 md:grid-cols-12
+        items-center
+        gap-10 lg:gap-16 2xl:gap-24 min-[1600px]:gap-32
+      "
+          >
+            <div className="md:col-span-7 space-y-6 md:space-y-7">
+              <span className="font-mono text-xs text-accent uppercase tracking-wider flex items-center gap-2">
+                <span className="accent-dot" />A creative studio for artists
+              </span>
+
+              <h1
+                className="
+    font-serif
+    text-4xl md:text-5xl
+    leading-[1.08] md:leading-[1.05]
+    tracking-[-0.01em]
+    text-foreground
+    max-w-[18ch]
+    min-[1600px]:max-w-[22ch]
+    !mt-10
+  "
               >
-                <Palette className="mr-2" />
-                {t.hero.cta1}
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline"
-                onClick={() => scrollToSection("#contact")}
-              >
-                <Send className="mr-2" />
-                {t.hero.cta2}
-              </Button>
+                {t.hero.title}
+              </h1>
+
+              <p className="text-xl text-muted-foreground leading-relaxed max-w-xl">
+                {t.hero.subtitle}
+              </p>
+
+              <p className="text-xl text-foreground flex items-center gap-2">
+                <ArrowUpRight className="w-4 h-4 text-accent" />
+                {t.hero.tagline}
+              </p>
+
+              {/* Legend-style actions */}
+              <div className="flex flex-col sm:flex-row gap-6 pt-4">
+                <LegendAction
+                  onClick={() => scrollToSection("#models")}
+                  variant="accent"
+                  arrow="diagonal"
+                >
+                  {t.hero.cta1}
+                </LegendAction>
+                <LegendAction
+                  onClick={() => scrollToSection("#contact")}
+                  arrow="move"
+                >
+                  {t.hero.cta2}
+                </LegendAction>
+              </div>
+
+              {/* Trust points */}
+              <div className="pt-8 border-t border-accent/20">
+                <div className="font-mono text-xs text-muted-foreground uppercase tracking-wider flex flex-col gap-3">
+                  <span className="flex items-center gap-2">
+                    <Heart className="w-4 h-4 text-primary" />
+                    {t.hero.trust1}
+                  </span>
+                  <span className="flex items-center gap-2">
+                    <Sparkles className="w-4 h-4 text-accent" />
+                    {t.hero.trust2}
+                  </span>
+                  <span className="flex items-center gap-2">
+                    <Users className="w-4 h-4 text-primary" />
+                    {t.hero.trust3}
+                  </span>
+                </div>
+              </div>
             </div>
 
-            <p className="text-sm text-muted-foreground flex flex-wrap gap-4">
-              <span className="flex items-center gap-2">
-                <Heart className="w-4 h-4 text-secondary" />
-                {t.hero.trust1}
-              </span>
-              <span className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-accent" />
-                {t.hero.trust2}
-              </span>
-              <span className="flex items-center gap-2">
-                <Users className="w-4 h-4 text-primary" />
-                {t.hero.trust3}
-              </span>
-            </p>
-          </div>
-
-          <div className="relative animate-scale-in">
-            <div className="absolute -top-8 -right-8 w-64 h-64 blob-purple opacity-20 blur-3xl"></div>
-            <div className="absolute -bottom-8 -left-8 w-64 h-64 blob-green opacity-20 blur-3xl"></div>
-            <img
-              src={heroIllustration}
-              alt="Creative workspace with art supplies and portfolio frames"
-              className="relative rounded-3xl shadow-soft-lg w-full"
-            />
+            <div className="md:col-span-5 relative md:mt-8">
+              <RisoHeroPlateTest />
+            </div>
           </div>
         </div>
       </Section>
@@ -99,7 +144,7 @@ const Index = () => {
           {t.howItWorks.title}
         </SectionTitle>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-8 md:gap-10">
           <FeatureCard
             icon={Palette}
             title={t.howItWorks.step1Title}
@@ -136,7 +181,7 @@ const Index = () => {
             ]}
             label="Best for: artists, jewelers, therapists starting out"
           />
-          
+
           <PackageCard
             title="Website with Model + Services"
             tagline="For creatives who need more features"
@@ -149,7 +194,7 @@ const Index = () => {
             label="Perfect for: musicians, teachers, coaches, active sellers"
             featured
           />
-          
+
           <PackageCard
             title="Custom Website"
             tagline="For when your story needs its own map"
@@ -163,8 +208,8 @@ const Index = () => {
         </div>
 
         <div className="text-center">
-          <Button 
-            variant="secondary" 
+          <Button
+            variant="secondary"
             size="lg"
             onClick={() => scrollToSection("#contact")}
           >
@@ -187,7 +232,7 @@ const Index = () => {
             description="Big, expressive sections, ideal for painters and jewelry artists with strong colors."
             accentClass="bg-gradient-to-br from-purple-700 via-orange-600 to-yellow-500"
           />
-          
+
           <ModelCard
             name="Cézanne"
             vibe="Structured, calm, geometric"
@@ -195,7 +240,7 @@ const Index = () => {
             description="Grid-based layout, perfect for organized portfolios, illustrators, designers."
             accentClass="bg-gradient-to-br from-green-600 via-teal-500 to-purple-400"
           />
-          
+
           <ModelCard
             name="Monet"
             vibe="Soft, dreamy, pastel"
@@ -203,7 +248,7 @@ const Index = () => {
             description="Gentle gradients and flowing sections, ideal for photographers, therapists, and artists with a softer palette."
             accentClass="bg-gradient-to-br from-purple-300 via-blue-200 to-green-200"
           />
-          
+
           <ModelCard
             name="Klimt"
             vibe="Luxurious, ornate, golden"
@@ -211,7 +256,7 @@ const Index = () => {
             description="Decorative details and framed highlights, perfect for jewelers and fine-art creators."
             accentClass="bg-gradient-to-br from-amber-500 via-purple-600 to-orange-600"
           />
-          
+
           <ModelCard
             name="Frida"
             vibe="Bold, symbolic, personal"
@@ -235,14 +280,14 @@ const Index = () => {
             model="Klimt"
             accentClass="bg-gradient-to-br from-amber-500 via-purple-600 to-orange-600"
           />
-          
+
           <ProjectCard
             name="Forest Echoes – Indie Musician"
             description="Bold portfolio for a singer-songwriter with emotionally charged visuals."
             model="Van Gogh"
             accentClass="bg-gradient-to-br from-purple-700 via-orange-600 to-yellow-500"
           />
-          
+
           <ProjectCard
             name="Soft Hands Therapy Studio"
             description="Calm, gentle website for a holistic therapy practice."
@@ -252,7 +297,9 @@ const Index = () => {
         </div>
 
         <div className="text-center mt-12">
-          <p className="text-muted-foreground italic">More client work coming soon!</p>
+          <p className="text-muted-foreground italic">
+            More client work coming soon!
+          </p>
         </div>
       </Section>
 
@@ -260,7 +307,7 @@ const Index = () => {
       <Section id="about" background="muted">
         <div className="max-w-4xl mx-auto">
           <SectionTitle>Who's behind Flaneuse Studio?</SectionTitle>
-          
+
           <div className="grid md:grid-cols-3 gap-8 items-center">
             <div className="md:col-span-1 flex justify-center">
               <div className="w-48 h-48 rounded-full bg-gradient-to-br from-primary via-secondary to-accent p-1">
@@ -269,19 +316,21 @@ const Index = () => {
                 </div>
               </div>
             </div>
-            
+
             <div className="md:col-span-2 space-y-6 text-lg text-foreground leading-relaxed">
               <p>
-                Hi! I'm a full-stack developer who loves art, storytelling, and gentle, human-centered tech. 
-                I've watched too many talented creatives feel overwhelmed or invisible because their websites 
+                Hi! I'm a full-stack developer who loves art, storytelling, and
+                gentle, human-centered tech. I've watched too many talented
+                creatives feel overwhelmed or invisible because their websites
                 didn't reflect the beauty of their work.
               </p>
               <p>
-                I understand artists and self-employed people who feel lost with tech. My goal is to create 
-                websites that feel like home for your work — places that invite people in and tell your story 
-                in a way that feels true to you.
+                I understand artists and self-employed people who feel lost with
+                tech. My goal is to create websites that feel like home for your
+                work — places that invite people in and tell your story in a way
+                that feels true to you.
               </p>
-              
+
               <div className="flex flex-wrap gap-4 pt-4">
                 <span className="px-4 py-2 bg-primary/10 text-primary rounded-full font-medium">
                   Kindness
@@ -304,38 +353,44 @@ const Index = () => {
       {/* FAQ Section */}
       <Section id="faq">
         <SectionTitle>Frequently Asked Questions</SectionTitle>
-        
+
         <FAQAccordion
           items={[
             {
               value: "tech",
               question: "Do I need to understand tech to work with you?",
-              answer: "Not at all! That's the whole point. I handle all the technical details and explain everything in simple, human terms. You focus on your art — I'll take care of the website.",
+              answer:
+                "Not at all! That's the whole point. I handle all the technical details and explain everything in simple, human terms. You focus on your art — I'll take care of the website.",
             },
             {
               value: "ownership",
               question: "Who owns the website and the domain?",
-              answer: "You do! You own your domain name and all the content. I build it for you, set it up, and hand over everything so you're in full control.",
+              answer:
+                "You do! You own your domain name and all the content. I build it for you, set it up, and hand over everything so you're in full control.",
             },
             {
               value: "timeline",
               question: "How long does it take to build a site?",
-              answer: "A model-based website typically takes 2-3 weeks from our first chat to launch. Custom sites take 4-6 weeks depending on the scope. I'll give you a clear timeline after our initial conversation.",
+              answer:
+                "A model-based website typically takes 2-3 weeks from our first chat to launch. Custom sites take 4-6 weeks depending on the scope. I'll give you a clear timeline after our initial conversation.",
             },
             {
               value: "updates",
               question: "Can I update my website later?",
-              answer: "Yes! I'll show you how to make basic updates yourself (like changing text or photos). For bigger changes or new features, I'm always here to help with ongoing support packages.",
+              answer:
+                "Yes! I'll show you how to make basic updates yourself (like changing text or photos). For bigger changes or new features, I'm always here to help with ongoing support packages.",
             },
             {
               value: "content",
               question: "Can you help me write the text or choose photos?",
-              answer: "Absolutely! I can help you organize your thoughts, write clear copy, and choose photos that tell your story. Think of me as a creative partner, not just a tech person.",
+              answer:
+                "Absolutely! I can help you organize your thoughts, write clear copy, and choose photos that tell your story. Think of me as a creative partner, not just a tech person.",
             },
             {
               value: "difference",
               question: "What makes Flaneuse Studio different?",
-              answer: "I specialize in working with creative people who need more than a template. Every site I build is designed with care, storytelling, and your unique personality in mind. No cookie-cutter solutions — just websites that feel like home.",
+              answer:
+                "I specialize in working with creative people who need more than a template. Every site I build is designed with care, storytelling, and your unique personality in mind. No cookie-cutter solutions — just websites that feel like home.",
             },
           ]}
         />
@@ -356,12 +411,18 @@ const Index = () => {
               </div>
               <div>
                 <label className="block text-sm font-medium mb-2">Email</label>
-                <Input type="email" placeholder="your@email.com" className="rounded-2xl" />
+                <Input
+                  type="email"
+                  placeholder="your@email.com"
+                  className="rounded-2xl"
+                />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-2">Type of work</label>
+              <label className="block text-sm font-medium mb-2">
+                Type of work
+              </label>
               <Select>
                 <SelectTrigger className="rounded-2xl">
                   <SelectValue placeholder="Choose one" />
@@ -377,7 +438,9 @@ const Index = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-2">Do you already have a website?</label>
+              <label className="block text-sm font-medium mb-2">
+                Do you already have a website?
+              </label>
               <Select>
                 <SelectTrigger className="rounded-2xl">
                   <SelectValue placeholder="Yes or no" />
@@ -390,22 +453,28 @@ const Index = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-2">What are you dreaming of for your website?</label>
-              <Textarea 
+              <label className="block text-sm font-medium mb-2">
+                What are you dreaming of for your website?
+              </label>
+              <Textarea
                 placeholder="Tell me about your vision, your work, and what you hope your website can do for you..."
                 className="rounded-2xl min-h-32"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-2">Which package are you considering?</label>
+              <label className="block text-sm font-medium mb-2">
+                Which package are you considering?
+              </label>
               <Select>
                 <SelectTrigger className="rounded-2xl">
                   <SelectValue placeholder="Choose one" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="model">Website with Model</SelectItem>
-                  <SelectItem value="model-services">Model + Services</SelectItem>
+                  <SelectItem value="model-services">
+                    Model + Services
+                  </SelectItem>
                   <SelectItem value="custom">Custom</SelectItem>
                   <SelectItem value="not-sure">Not sure yet</SelectItem>
                 </SelectContent>

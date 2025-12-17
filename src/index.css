@@ -1,113 +1,80 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    /* Flaneuse Studio Design System - Warm, Playful, Artistic */
-    
-    /* Backgrounds - soft cream/off-white */
-    --background: 40 50% 98%;
-    --foreground: 240 8% 18%;
+    /* Paper & ink palette - warm, print-like */
+    --background: 40 33% 94%; /* warm beige paper */
+    --foreground: 150 15% 25%; /* dark green-gray ink, not pure black */
 
-    /* Cards - slightly whiter than background with soft shadow */
-    --card: 0 0% 100%;
-    --card-foreground: 240 8% 18%;
+    --card: 40 30% 96%;
+    --card-foreground: 150 15% 25%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 8% 18%;
+    --popover: 40 30% 96%;
+    --popover-foreground: 150 15% 25%;
 
-    /* Primary - Deep muted purple */
-    --primary: 270 40% 45%;
-    --primary-foreground: 0 0% 100%;
+    /* Primary: muted green ink */
+    --primary: 145 25% 35%;
+    --primary-foreground: 40 33% 94%;
 
-    /* Secondary - Leafy green */
-    --secondary: 140 35% 50%;
-    --secondary-foreground: 0 0% 100%;
+    /* Secondary: lighter green */
+    --secondary: 145 15% 85%;
+    --secondary-foreground: 145 25% 30%;
 
-    /* Accent - Warm orange */
-    --accent: 25 75% 60%;
-    --accent-foreground: 0 0% 100%;
+    --muted: 40 20% 88%;
+    --muted-foreground: 150 10% 45%;
 
-    /* Muted tones for subtle elements */
-    --muted: 40 30% 90%;
-    --muted-foreground: 240 5% 45%;
+    /* Accent: soft orange */
+    --accent: 25 70% 55%;
+    --accent-foreground: 40 33% 96%;
 
-    --destructive: 0 70% 55%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 60% 50%;
+    --destructive-foreground: 40 33% 96%;
 
-    /* Borders - soft and subtle */
-    --border: 40 20% 85%;
-    --input: 40 20% 85%;
-    --ring: 270 40% 45%;
+    /* Grid lines - very subtle */
+    --border: 150 10% 75%;
+    --input: 150 10% 80%;
+    --ring: 145 25% 35%;
 
-    /* Custom design tokens */
-    --radius: 1rem;
-    
-    /* Organic gradient backgrounds */
-    --gradient-purple: linear-gradient(135deg, hsl(270 40% 45%) 0%, hsl(280 45% 55%) 100%);
-    --gradient-green: linear-gradient(135deg, hsl(140 35% 50%) 0%, hsl(150 40% 60%) 100%);
-    --gradient-orange: linear-gradient(135deg, hsl(25 75% 60%) 0%, hsl(35 70% 65%) 100%);
-    --gradient-multi: linear-gradient(135deg, hsl(270 40% 45%) 0%, hsl(25 75% 60%) 100%);
-    
-    /* Soft shadows for layered paper effect */
-    --shadow-sm: 0 2px 8px -2px hsl(270 40% 45% / 0.1);
-    --shadow-md: 0 4px 16px -4px hsl(270 40% 45% / 0.15);
-    --shadow-lg: 0 8px 32px -8px hsl(270 40% 45% / 0.2);
-    
-    /* Animations */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --radius: 0.25rem;
   }
 
   .dark {
-    /* Dark mode - Deep purple night with warm accents */
-    --background: 270 30% 12%;
-    --foreground: 40 40% 95%;
+    /* Night-paper: deep, low-sat forest */
+    --background: 155 18% 10%;
+    --foreground: 40 30% 88%;
 
-    --card: 270 25% 16%;
-    --card-foreground: 40 40% 95%;
+    --card: 155 16% 13%;
+    --card-foreground: 40 30% 88%;
 
-    --popover: 270 25% 16%;
-    --popover-foreground: 40 40% 95%;
+    --popover: 155 16% 13%;
+    --popover-foreground: 40 30% 88%;
 
-    /* Primary - Lighter purple for dark mode */
-    --primary: 270 50% 65%;
-    --primary-foreground: 270 30% 12%;
+    /* Primary: softer "ink green" (less neon) */
+    --primary: 145 26% 58%;
+    --primary-foreground: 155 18% 10%;
 
-    /* Secondary - Brighter green */
-    --secondary: 140 40% 55%;
-    --secondary-foreground: 270 30% 12%;
+    /* Secondary */
+    --secondary: 155 14% 18%;
+    --secondary-foreground: 40 24% 75%;
 
-    /* Accent - Warmer orange */
-    --accent: 25 80% 65%;
-    --accent-foreground: 270 30% 12%;
+    --muted: 155 12% 16%;
+    --muted-foreground: 40 18% 62%;
 
-    /* Muted tones */
-    --muted: 270 20% 20%;
-    --muted-foreground: 40 20% 65%;
+    /* Accent: slightly muted warm orange */
+    --accent: 25 70% 58%;
+    --accent-foreground: 155 18% 10%;
 
-    --destructive: 0 65% 60%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 55% 55%;
+    --destructive-foreground: 40 33% 96%;
 
-    /* Borders */
-    --border: 270 20% 25%;
-    --input: 270 20% 25%;
-    --ring: 270 50% 65%;
-
-    /* Dark mode gradients */
-    --gradient-purple: linear-gradient(135deg, hsl(270 50% 45%) 0%, hsl(280 55% 55%) 100%);
-    --gradient-green: linear-gradient(135deg, hsl(140 45% 40%) 0%, hsl(150 50% 50%) 100%);
-    --gradient-orange: linear-gradient(135deg, hsl(25 75% 50%) 0%, hsl(35 70% 60%) 100%);
-    --gradient-multi: linear-gradient(135deg, hsl(270 50% 45%) 0%, hsl(25 75% 55%) 100%);
-
-    /* Dark mode shadows with glow */
-    --shadow-sm: 0 2px 8px -2px hsl(270 50% 30% / 0.3);
-    --shadow-md: 0 4px 16px -4px hsl(270 50% 30% / 0.4);
-    --shadow-lg: 0 8px 32px -8px hsl(270 50% 30% / 0.5);
+    /* Borders: a touch warmer + subtler */
+    --border: 155 12% 22%;
+    --input: 155 12% 22%;
+    --ring: 145 26% 58%;
   }
 }
 
@@ -117,56 +84,261 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-weight: 400;
+  }
+
+  /* Typography hierarchy */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+
+  /* Mono for UI elements, labels, captions */
+  .legend-item,
+  .caption,
+  label {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  code {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.85em; /* keep code readable */
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  .font-mono {
+    font-family: "IBM Plex Mono", monospace;
   }
 
   /* Smooth scrolling */
   html {
     scroll-behavior: smooth;
   }
-
-  /* Custom fonts - playful display + clean body */
-  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Comfortaa:wght@400;600;700&display=swap');
-  
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Fredoka', 'Comfortaa', cursive;
-  }
-
-  body {
-    font-family:  'DM Sans', sans-serif;
-  }
 }
 
 @layer utilities {
-  /* Organic blob shapes */
-  .blob-purple {
-    background: var(--gradient-purple);
-    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  /* Paper texture overlay */
+  .paper-texture {
+    position: relative;
   }
 
-  .blob-green {
-    background: var(--gradient-green);
-    border-radius: 40% 60% 70% 30% / 40% 70% 30% 60%;
+  .paper-texture::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    mix-blend-mode: multiply;
   }
 
-  .blob-orange {
-    background: var(--gradient-orange);
-    border-radius: 50% 50% 40% 60% / 70% 30% 60% 40%;
+  .dark .paper-texture::before {
+    opacity: 0.06;
+    mix-blend-mode: screen;
   }
 
-  /* Animation utilities */
-  .animate-fade-in-up {
-    animation: fadeInUp 0.6s ease-out;
+  /* Grid pattern for map feel */
+  .grid-pattern {
+    background-image: linear-gradient(
+        to right,
+        hsl(var(--border) / 0.3) 1px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, hsl(var(--border) / 0.3) 1px, transparent 1px);
+    background-size: 40px 40px;
   }
 
-  .animate-scale-in {
-    animation: scaleIn 0.4s ease-out;
+  /* Legend-style actions (no traditional buttons) */
+  .legend-action {
+    @apply inline-flex items-center gap-3 font-mono text-xs uppercase tracking-wider;
+    @apply text-foreground/80 transition-all duration-300;
+    @apply hover:text-primary;
+    position: relative;
   }
 
-  @keyframes fadeInUp {
+  .legend-action::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border: 1.5px solid currentColor;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+  }
+
+  .legend-action:hover::before {
+    background-color: currentColor;
+    transform: scale(1.2);
+  }
+
+  .legend-action--filled::before {
+    background-color: hsl(var(--accent));
+    border-color: hsl(var(--accent));
+  }
+
+  /* Underline hover effect */
+  .ink-underline {
+    position: relative;
+  }
+
+  .ink-underline::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: currentColor;
+    transition: width 0.3s ease;
+  }
+
+  .ink-underline:hover::after {
+    width: 100%;
+  }
+
+  /* Editorial divider with accent */
+  .editorial-divider {
+    @apply w-full h-px bg-border my-12;
+    position: relative;
+  }
+
+  .editorial-divider::before {
+    content: "◇";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    @apply bg-background px-4 text-accent text-sm;
+    animation: pulse-soft 3s ease-in-out infinite;
+  }
+
+  @keyframes pulse-soft {
+    0%,
+    100% {
+      opacity: 0.6;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  /* Map marker with bounce */
+  .map-marker {
+    @apply inline-flex items-center justify-center;
+    @apply w-6 h-6 rounded-full border border-primary text-primary text-xs font-mono;
+    transition: all 0.3s ease;
+  }
+
+  .map-marker:hover {
+    @apply bg-accent border-accent text-accent-foreground;
+    transform: scale(1.15) rotate(-5deg);
+  }
+
+  /* Exhibit frame for images with hover effects */
+  .exhibit-frame {
+    @apply relative;
+    padding: 1rem;
+    border: 1px solid hsl(var(--border));
+    transition: all 0.5s ease;
+  }
+
+  .exhibit-frame:hover {
+    border-color: hsl(var(--accent) / 0.5);
+  }
+
+  .exhibit-frame::before {
+    content: "";
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    right: -0.5rem;
+    bottom: -0.5rem;
+    border: 1px solid hsl(var(--border) / 0.5);
+    pointer-events: none;
+    transition: all 0.5s ease;
+  }
+
+  .exhibit-frame:hover::before {
+    border-color: hsl(var(--accent) / 0.3);
+    transform: translate(2px, 2px);
+  }
+
+  /* Debug Grid Overlay - 12 columns with 10px margins and gaps */
+  .debug-grid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 9999;
+    padding: 10px;
+  }
+
+  .debug-grid::before {
+    content: "";
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 10px;
+    height: 100%;
+    width: 100%;
+  }
+
+  .debug-grid::after {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 10px;
+    background-image: repeating-linear-gradient(
+      to right,
+      hsl(270 40% 45% / 0.08) 0,
+      hsl(270 40% 45% / 0.08) calc((100% - 110px) / 12),
+      transparent calc((100% - 110px) / 12),
+      transparent calc((100% - 110px) / 12 + 10px)
+    );
+  }
+
+  .dark .debug-grid::after {
+    background-image: repeating-linear-gradient(
+      to right,
+      hsl(270 50% 65% / 0.08) 0,
+      hsl(270 50% 65% / 0.08) calc((100% - 110px) / 12),
+      transparent calc((100% - 110px) / 12),
+      transparent calc((100% - 110px) / 12 + 10px)
+    );
+  }
+
+  /* Caption style */
+  .caption {
+    @apply font-mono text-xs text-muted-foreground uppercase tracking-wider mt-3;
+  }
+
+  /* Animations */
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out;
+  }
+
+  @keyframes fadeIn {
     from {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(12px);
     }
     to {
       opacity: 1;
@@ -174,24 +346,282 @@ All colors MUST be HSL.
     }
   }
 
-  @keyframes scaleIn {
+  /* Bounce animation for playful elements */
+  .animate-bounce-soft {
+    animation: bounceSoft 2s ease-in-out infinite;
+  }
+
+  @keyframes bounceSoft {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-4px);
+    }
+  }
+
+  /* Wiggle animation */
+  .animate-wiggle {
+    animation: wiggle 0.5s ease-in-out;
+  }
+
+  @keyframes wiggle {
+    0%,
+    100% {
+      transform: rotate(0deg);
+    }
+    25% {
+      transform: rotate(-3deg);
+    }
+    75% {
+      transform: rotate(3deg);
+    }
+  }
+
+  /* Spin slow for decorations */
+  .animate-spin-slow {
+    animation: spin 8s linear infinite;
+  }
+
+  /* Section spacing - generous whitespace */
+  .section-spacing {
+    @apply py-24 md:py-32;
+  }
+
+  /* Editorial grid */
+  .editorial-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1.5rem;
+  }
+
+  /* Compass rose decoration with animation */
+  .compass-decoration {
+    @apply text-accent text-4xl;
+    animation: rotate-gentle 20s linear infinite;
+  }
+
+  @keyframes rotate-gentle {
     from {
-      opacity: 0;
-      transform: scale(0.9);
+      transform: rotate(0deg);
     }
     to {
-      opacity: 1;
-      transform: scale(1);
+      transform: rotate(360deg);
     }
   }
 
-  /* Hover effects */
-  .hover-lift {
-    transition: var(--transition-smooth);
+  /* Field guide card with hover lift */
+  .field-card {
+    @apply bg-card border border-border p-6;
+    position: relative;
+    transition: all 0.4s ease;
   }
 
-  .hover-lift:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
+  .field-card:hover {
+    box-shadow: 0 8px 24px hsl(var(--accent) / 0.1);
+  }
+
+  .field-card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 24px 24px 0;
+    border-color: transparent hsl(var(--background)) transparent transparent;
+  }
+
+  /* Accent dot pulse */
+  .accent-dot {
+    @apply w-2 h-2 rounded-full bg-accent;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 0.7;
+    }
+  }
+
+  /* Hover rotate effect */
+  .hover-rotate {
+    transition: transform 0.3s ease;
+  }
+
+  .hover-rotate:hover {
+    transform: rotate(5deg);
+  }
+
+  /* Hover scale effect */
+  .hover-scale {
+    transition: transform 0.3s ease;
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.05);
+  }
+
+  /* Accent underline animation */
+  .accent-underline {
+    position: relative;
+  }
+
+  .accent-underline::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: hsl(var(--accent));
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s ease;
+  }
+
+  .accent-underline:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  /* Riso-style hero animation */
+  .riso-plate {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    background: hsl(var(--card));
+  }
+
+  /* A very subtle paper grain */
+  .riso-grain {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.18;
+    mix-blend-mode: multiply;
+    background-image: radial-gradient(
+        circle at 20% 30%,
+        rgba(0, 0, 0, 0.08) 0 1px,
+        transparent 2px
+      ),
+      radial-gradient(
+        circle at 70% 60%,
+        rgba(0, 0, 0, 0.06) 0 1px,
+        transparent 2px
+      ),
+      radial-gradient(
+        circle at 40% 80%,
+        rgba(0, 0, 0, 0.05) 0 1px,
+        transparent 2px
+      );
+    background-size: 22px 22px, 26px 26px, 18px 18px;
+  }
+
+  /* Base for each ink pass */
+  .riso-layer {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: translate(1px, -1px);
+    transition: opacity 900ms ease-out, transform 900ms ease-out;
+    mix-blend-mode: multiply;
+    filter: saturate(0.95) contrast(0.98);
+  }
+
+  .riso-layer.is-on {
+    opacity: 1;
+    transform: translate(0px, 0px);
+  }
+
+  /* Moss: big abstract landscape shapes */
+  .riso-moss {
+    background-image: radial-gradient(
+        60% 35% at 70% 25%,
+        hsl(var(--primary) / 0.55) 0 60%,
+        transparent 61%
+      ),
+      radial-gradient(
+        70% 45% at 20% 40%,
+        hsl(var(--primary) / 0.5) 0 55%,
+        transparent 56%
+      ),
+      linear-gradient(to top, hsl(var(--primary) / 0.55) 0 40%, transparent 41%),
+      linear-gradient(to bottom, hsl(var(--primary) / 0.18), transparent 55%);
+  }
+
+  /* Stone: contour lines + "path/river" */
+  .riso-stone {
+    background-image: repeating-linear-gradient(
+        12deg,
+        transparent 0 10px,
+        hsl(var(--muted-foreground) / 0.18) 10px 11px,
+        transparent 11px 22px
+      ),
+      radial-gradient(
+        80% 55% at 35% 55%,
+        transparent 0 58%,
+        hsl(var(--muted-foreground) / 0.16) 59% 60%,
+        transparent 61%
+      ),
+      linear-gradient(
+        120deg,
+        transparent 0 45%,
+        hsl(var(--muted-foreground) / 0.22) 46% 48%,
+        transparent 49% 100%
+      );
+    filter: contrast(0.95);
+  }
+
+  /* Persimmon: sun + tiny accent marks */
+  .riso-persimmon {
+    background-image: radial-gradient(
+        circle at 62% 28%,
+        hsl(var(--accent) / 0.7) 0 8%,
+        transparent 9%
+      ),
+      radial-gradient(
+        circle at 40% 58%,
+        hsl(var(--accent) / 0.22) 0 3%,
+        transparent 4%
+      ),
+      radial-gradient(
+        circle at 78% 62%,
+        hsl(var(--accent) / 0.18) 0 2.5%,
+        transparent 3.5%
+      );
+  }
+
+  /* Puzzle grid overlay (4x5) */
+  .riso-grid {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.55;
+    background-image: linear-gradient(
+        to right,
+        hsl(var(--border) / 0.55) 1px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, hsl(var(--border) / 0.55) 1px, transparent 1px);
+    background-size: calc(100% / 4) calc(100% / 5);
+    background-position: 0 0;
+  }
+
+  /* Optional: reduce motion if user prefers */
+  @media (prefers-reduced-motion: reduce) {
+    .riso-layer {
+      transition: opacity 200ms linear;
+      transform: none;
+    }
   }
 }

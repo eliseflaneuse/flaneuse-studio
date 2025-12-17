@@ -18,7 +18,7 @@ export const Section = ({ id, className, children, background = "default" }: Sec
         className
       )}
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl min-[1600px]:max-w-[80vw] mx-auto">
         {children}
       </div>
     </section>
