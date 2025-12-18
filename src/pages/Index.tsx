@@ -1,7 +1,6 @@
 import { Navigation } from "../components/Navigation";
 import { Section } from "../components/Section";
 import { SectionTitle } from "../components/SectionTitle";
-import { FeatureCard } from "../components/FeatureCard";
 import { PackageCard } from "../components/PackageCard";
 import { ModelCard } from "../components/ModelCard";
 import { LegendAction } from "@/components/LegendAction";
@@ -21,14 +20,13 @@ import {
 import {
   Sparkles,
   Send,
-  Rocket,
   Heart,
-  Palette,
   Users,
   ArrowUpRight,
 } from "lucide-react";
 
 import { useLanguage } from "@/contexts/LanguageContext";
+import { FieldCard } from "@/components/FieldCard";
 
 const Index = () => {
   const { t } = useLanguage();
@@ -138,27 +136,32 @@ const Index = () => {
         </div>
       </Section>
 
-      {/* How It Works */}
-      <Section id="how-it-works" background="muted">
-        <SectionTitle subtitle={t.howItWorks.subtitle}>
+         {/* How It Works */}
+      <Section id="how-it-works" withGrid>
+        <SectionTitle 
+          marker="The Journey"
+          subtitle={t.howItWorks.subtitle}
+        >
           {t.howItWorks.title}
         </SectionTitle>
 
-        <div className="grid md:grid-cols-3 gap-8 md:gap-10">
-          <FeatureCard
-            icon={Palette}
+        <div className="grid md:grid-cols-3 gap-8">
+          <FieldCard
+            number="01"
             title={t.howItWorks.step1Title}
             description={t.howItWorks.step1Text}
+            accent
           />
-          <FeatureCard
-            icon={Send}
+          <FieldCard
+            number="02"
             title={t.howItWorks.step2Title}
             description={t.howItWorks.step2Text}
           />
-          <FeatureCard
-            icon={Rocket}
+          <FieldCard
+            number="03"
             title={t.howItWorks.step3Title}
             description={t.howItWorks.step3Text}
+            accent
           />
         </div>
       </Section>
@@ -219,7 +222,7 @@ const Index = () => {
       </Section>
 
       {/* Models Section */}
-      <Section id="models" background="muted">
+      <Section id="models">
         <SectionTitle subtitle="Each model is a different visual mood inspired by great artists">
           Website models inspired by great artists
         </SectionTitle>
@@ -304,7 +307,7 @@ const Index = () => {
       </Section>
 
       {/* About Section */}
-      <Section id="about" background="muted">
+      <Section id="about" >
         <div className="max-w-4xl mx-auto">
           <SectionTitle>Who's behind Flaneuse Studio?</SectionTitle>
 
@@ -397,7 +400,7 @@ const Index = () => {
       </Section>
 
       {/* Contact Section */}
-      <Section id="contact" background="muted">
+      <Section id="contact" >
         <div className="max-w-2xl mx-auto">
           <SectionTitle subtitle="If you're not sure which package or model is right for you, just write to me. Tell me what you create, and we'll find the best path together.">
             Tell me about your work

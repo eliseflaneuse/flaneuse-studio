@@ -4,21 +4,20 @@ interface SectionProps {
   id?: string;
   className?: string;
   children: React.ReactNode;
-  background?: "default" | "muted";
+  withGrid?: boolean;
 }
 
-export const Section = ({ id, className, children, background = "default" }: SectionProps) => {
+export const Section = ({ id, className, children, withGrid = false }: SectionProps) => {
   return (
     <section
       id={id}
       className={cn(
-        "scroll-mt-16 md:scroll-mt-20",
-        "py-16 px-4 md:py-24 md:px-6",
-        background === "muted" && "bg-muted/30",
+        "py-24 md:py-32 px-6 relative",
+        withGrid && "grid-pattern",
         className
       )}
     >
-      <div className="max-w-7xl min-[1600px]:max-w-[80vw] mx-auto">
+      <div className="max-w-5xl mx-auto">
         {children}
       </div>
     </section>
